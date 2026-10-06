@@ -1,0 +1,16 @@
+{% extends "fakultet/base.html" %}
+{% block title %}Спеціальності{% endblock %}
+{% block content %}
+  <h1>Спеціальності</h1>
+  {% for program in programs %}
+    <article>
+      <h2><a href="{% url 'fakultet:program_detail' program.id %}">{{ program.name }}</a></h2>
+      <p><strong>Код:</strong> {{ program.code }}</p>
+      <p>{{ program.description|truncatewords:50 }}</p>
+      <p><strong>Координатор набору:</strong> {{ program.coordinator_name }}</p>
+      <p><strong>Контакт:</strong> {{ program.coordinator_contact|urlize }}</p>
+    </article>
+  {% empty %}
+    <p>Спеціальності поки не додані.</p>
+  {% endfor %}
+{% endblock %}

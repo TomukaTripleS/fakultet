@@ -1,7 +1,25 @@
-# web-programming-2026-template
+# Сайт факультету міжнародних відносин та врядування НаУКМА
 
-A reusable Django project with no bundled application, SQLite, and Django's
-standard admin, authentication, sessions, messages, and staticfiles support.
+На сайті представлені інформація про факультет, кафедри,
+спеціальності, дисципліни, викладачі та програми академічного обміну.
+
+містить два застосунки:
+- `fakultet` — інформація про факультет.
+- `exchange` — програми академічного обміну.
+
+Початкове наповнення обох застосунків створюється міграціями
+ після виконання `python manage.py migrate`.
+Створення адміністратора виконується окремо через
+`python manage.py createsuperuser`.
+
+Джерела:
+ https://jcc.ukma.edu.ua/с3/
+ https://vstup.ukma.edu.ua/education-programs?level=BACHELOR
+
+Приклад оформлення сайту факультету:
+ https://www.fin.ukma.edu.ua/
+
+Контакти на головній сторінці належать приймальній комісії НаУКМА
 
 ## Local setup
 
@@ -42,12 +60,15 @@ Requires the latest patch release of Python 3.12, 3.13, or 3.14. Run these comma
 
 With the server running at `http://127.0.0.1:8000`:
 
-| URL | Behavior |
+| URL | Призначення |
 | --- | --- |
-| http://127.0.0.1:8000/ | No application homepage; may show Django's development welcome page while `DEBUG = True` |
-| http://127.0.0.1:8000/admin/ | Django admin, available after applying migrations |
-
-With `DEBUG = False`, unmatched URLs such as `/` return HTTP 404.
+| `/` | Інформація про факультет і контакти |
+| `/programs/` | Список спеціальностей |
+| `/programs/<id>/` | Опис спеціальності та дисципліни |
+| `/departments/` | Список кафедр |
+| `/departments/<id>/` | Інформація про кафедру та викладачів |
+| `/exchange/` | Програми обміну та статус прийому |
+| `/admin/` | Адміністративна панель |
 
 To create an account for admin login, run this after applying migrations:
 

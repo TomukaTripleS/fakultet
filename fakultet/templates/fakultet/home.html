@@ -1,0 +1,18 @@
+{% extends "fakultet/base.html" %}
+{% block title %}Головна{% endblock %}
+{% block content %}
+  <h1>{{ faculty.name|default:"Факультет міжнародних відносин та врядування" }}</h1>
+  {% if faculty %}
+    {{ faculty.description|linebreaks }}
+    <p><strong>Декан:</strong> {{ faculty.dean }}</p>
+    {% if faculty.deputy_dean and faculty.deputy_dean != "Інформацію не підтверджено" %}
+      <p><strong>Заступник декана:</strong> {{ faculty.deputy_dean }}</p>
+    {% endif %}
+    <h2>Контакти</h2>
+    <p><strong>Адреса:</strong> {{ faculty.address }}</p>
+    <p><strong>Телефон:</strong> {{ faculty.phone }}</p>
+    <p><strong>Електронна пошта:</strong> <a href="mailto:{{ faculty.email }}">{{ faculty.email }}</a></p>
+  {% else %}
+    <p>Інформація про факультет поки не додана.</p>
+  {% endif %}
+{% endblock %}
