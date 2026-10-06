@@ -1,0 +1,19 @@
+{% extends "fakultet/base.html" %}
+{% block title %}{{ program.name }}{% endblock %}
+{% block content %}
+  <p><a href="{% url 'fakultet:program_list' %}">Усі спеціальності</a></p>
+  <h1>{{ program.name }}</h1>
+  <p><strong>Код:</strong> {{ program.code }}</p>
+  {{ program.description|linebreaks }}
+  <p><strong>Координатор набору:</strong> {{ program.coordinator_name }}</p>
+  <p><strong>Контакт:</strong> {{ program.coordinator_contact|urlize }}</p>
+  <p><strong>Випускова кафедра:</strong> <a href="{% url 'fakultet:department_detail' program.department.id %}">{{ program.department.name }}</a></p>
+  <h2>Дисципліни</h2>
+  <ul>
+    {% for discipline in program.disciplines.all %}
+      <li>{{ discipline.name }}</li>
+    {% empty %}
+      <li>Дисципліни поки не додані.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
